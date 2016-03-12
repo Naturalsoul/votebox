@@ -1,0 +1,70 @@
+doctype html
+html
+    head
+        title Votebox
+        link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
+        link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css")
+        link(rel="stylesheet", href="/css/materialize.min.css")
+        link(rel="stylesheet", href="/css/styles.css")
+    body
+        nav.transparent
+            .nav-wrapper.container
+                a.brand-logo.grey-text(href='#!') VoteBox
+                a.button-collapse.grey-text(href='#', data-activates='mobile-demo')
+                  i.material-icons menu
+                ul.right.hide-on-med-and-down
+                  li
+                    a(href='/') Inicio
+                  li
+                    a(href='/polls') Polls
+                  li.connect
+                    a(href='/login') LogIn
+                  li.connect
+                    a(href='/signup') SignUp
+                  li.disconnect
+                    a(href="/logout") LogOut
+                ul#mobile-demo.side-nav
+                  li
+                    a(href='/') Inicio
+                  li
+                    a(href='/polls') Polls
+                  li.connect
+                    a(href='/login') LogIn
+                  li.connect
+                    a(href='/signup') SignUp
+                  li.disconnect
+                    a(href="/logout") LogOut
+        .slider
+            ul.slides
+              li
+                img(src='/img/slider1.jpg')
+                // random image
+                .caption.center-align
+                  h3 Give your opinion!
+                  h5.light.grey-text.text-lighten-3 Look through a ton of polls to leave your opinion.
+              li
+                img(src='/img/slider2.jpg')
+                // random image
+                .caption.left-align
+                  h3 Create your own ones.
+                  h5.light.grey-text.text-lighten-3 Don't you find any poll you like? That's not a problem :D
+              li
+                img(src='/img/slider3.jpg')
+                // random image
+                .caption.right-align
+                  h3 Keep alert!
+                  h5.light.grey-text.text-lighten-3 You can check at anytime your polls and quantity of votes.
+              li
+                img(src='/img/slider4.jpg')
+                // random image
+                .caption.center-align
+                  h3 Enjoy!
+                  h5.light.grey-text.text-lighten-3 You can create polls even of superheroes!
+
+        block content
+        
+        script(type="text/javascript", src="/js/jquery-2.2.1.min.js")
+        script(type="text/javascript", src="/js/materialize.min.js")
+        script(type="text/javascript", src="/js/material.init.js")
+        script(type="text/javascript", src="/js/angular.min.js")
+        script(type="text/javascript", src="/js/index.js")

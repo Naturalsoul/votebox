@@ -1,0 +1,43 @@
+{
+  "name": "votebox",
+  "version": "1.0.0",
+  "description": "Voting app.",
+  "main": "index.js",
+  "dependencies": {
+    "angular": "^1.5.0",
+    "bcrypt": "^0.8.5",
+    "body-parser": "^1.15.0",
+    "cookie-parser": "^1.4.1",
+    "express": "^4.13.4",
+    "express-session": "^1.13.0",
+    "jade": "^1.11.0",
+    "materialize-css": "^0.97.5",
+    "mongodb": "^2.1.7",
+    "mongoose": "^4.4.6",
+    "update": "^0.4.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Naturalsoul/votebox.git"
+  },
+  "keywords": [
+    "voting",
+    "app",
+    "nodejs",
+    "angularjs",
+    "mongodb",
+    "mean",
+    "expressjs",
+    "jade"
+  ],
+  "author": "Naturalsoul",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Naturalsoul/votebox/issues"
+  },
+  "homepage": "https://github.com/Naturalsoul/votebox#readme"
+}

@@ -1,0 +1,19 @@
+extends ./_layout.jade
+
+block content
+    br
+    #polls(ng-app="polls", ng-controller="indexPollsController as polls")
+        .row.container
+            .col.s12.m4.l4
+                .pollContainer.card-panel(ng-repeat="poll in polls.currentPolls")
+                    .row
+                        .col.s12
+                            span.pollTitle {{poll.title}}
+                        .col.s12
+                            span.timePosted.right Posted on: {{poll.date | date}}
+                        .col.s12
+                            span.author.right -By: {{poll.author}}
+                        .col.s12
+                            span.votes.right
+                                i.fa.fa-heart
+                                |  {{poll.votes}}
