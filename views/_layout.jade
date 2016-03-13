@@ -18,22 +18,22 @@ html
                   li
                     a(href='/polls') Polls
                   li.connect
-                    a(href='/login') LogIn
+                    a.modal-trigger(href='#loginModal') LogIn
                   li.connect
-                    a(href='/signup') SignUp
+                    a.modal-trigger(href='#signupModal') SignUp
                   li.disconnect
-                    a(href="/logout") LogOut
+                    a.logout(href="#") LogOut
                 ul#mobile-demo.side-nav
                   li
                     a(href='/') Inicio
                   li
                     a(href='/polls') Polls
                   li.connect
-                    a(href='/login') LogIn
+                    a.modal-trigger(href='#loginModal') LogIn
                   li.connect
-                    a(href='/signup') SignUp
+                    a.modal-trigger(href='#signupModal') SignUp
                   li.disconnect
-                    a(href="/logout") LogOut
+                    a.logout(href="#") LogOut
         .slider
             ul.slides
               li
@@ -63,8 +63,61 @@ html
 
         block content
         
+        // Modals -------------------------------------------
+        
+        #loginModal.modal
+          .modal-content
+            h4.center-align.bold Log In
+            form#login-form(method="POST", action="/login")
+              .row
+                .col.s12
+                    .row
+                        .input-field.col.s12
+                            i.material-icons.prefix account_circle
+                            input#loginName.validate(type="text", required, name="loginName")
+                            label(for="username-login") Username
+                        .input-field.col.s12
+                            i.material-icons.prefix lock_outline
+                            input#loginPass.validate(type="password", required, name="loginPass")
+                            label(for="pass-login") Password
+                    
+              .modal-footer
+                a.modal-action.waves-effect.waves-green.btn-flat#login-submit(type="submit", name="login-action") Log In
+                  i.material-icons.right lock_open
+                a.modal-action.modal-close.waves-effect.waves-blue.btn-flat Close
+                
+        #signupModal.modal
+          .modal-content
+            h4.center-align.bold Sign Up
+            form#signup-form(method="POST", action="/signup")
+              .row
+                .col.s12
+                    .row
+                        .input-field.col.s12.m6
+                            i.material-icons.prefix account_circle
+                            input#username.validate(type="text", required, name="signupName")
+                            label(for="username") Username
+                        .input-field.col.s12.m6
+                            i.material-icons.prefix email
+                            input#email.validate(type="email", required, name="email")
+                            label(for="email") Email
+                        .input-field.col.s12.m6
+                            i.material-icons.prefix lock_outline
+                            input#pass.validate(type="password", required, name="signupPass", pattern=".{5,}", title="Choose a password with more than 5 characters.")
+                            label(for="pass") Password
+                        .input-field.col.s12.m6
+                            i.material-icons.prefix https
+                            input#pass2.validate(type="password", required, name="pass2")
+                            label(for="pass2") Repeat the Password
+              .modal-footer
+                a.modal-action.waves-effect.waves-green.btn-flat#signup-submit(type="submit", name="signup-action") Sign Up
+                  i.material-icons.right send
+                a.modal-action.modal-close.wafes-effect.waves-blue.btn-flat Close
+
+        
         script(type="text/javascript", src="/js/jquery-2.2.1.min.js")
         script(type="text/javascript", src="/js/materialize.min.js")
         script(type="text/javascript", src="/js/material.init.js")
         script(type="text/javascript", src="/js/angular.min.js")
         script(type="text/javascript", src="/js/index.js")
+        script(type="text/javascript", src="/js/various.js")
