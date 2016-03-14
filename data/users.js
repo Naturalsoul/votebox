@@ -1,50 +1,61 @@
-var users = require("../model/user.model.js")
 var bcrypt = require("bcrypt")
+var users = require("../model/user.model.js")
 
 exports.signup = function(req, res) {
-    users.findOne({ username: req.body.signupName }, function(err, data) {
+    bcrypt.genSalt(10, function(err, salt) {
         if(err) throw err
-        if(data != null) {
-            res.status(403).send({created: false})
-        }
-        else {
-            req.session.userName = req.body.signupName
+        
+        bcrypt.hash(req.body.signupPass, salt, function(err, hash) {
+            if(err) throw err
             
-            bcrypt.genSalt(10, function(err, salt) {
-                if(err) throw err
-                bcrypt.hash(req.body.signupPass, salt, function(err, hash) {
+            InsertUserData(hash)
+        })
+    })
+    
+    function InsertUserData(encryptedPass) {
+        
+        var newUser = new users({
+            username: req.body.signupName,
+            email: req.body.email,
+            passHash: encryptedPass
+        })
+        
+        users.find({ username: newUser.username }, function(err, data) {
+            if(err) throw err
+            if(data.length > 0) {
+                res.status(200).send({created: false})
+            }
+            else {
+                newUser.save(function(err) {
                     if(err) throw err
                     
-                    new users({
-                        username: req.body.signupName,
-                        email: req.body.email,
-                        passHash: hash,
-                        date: Date.now
-                    }).save()
+                    console.log("Usuario " + newUser.username + " created.")
                 })
-            })
-            
-            res.status(200).send({created: true})
-        }
-    })
+                
+                res.status(200).send({ created: true })
+            }
+        })
+    }
 }
 
 exports.login = function(req, res) {
-    bcrypt.genSalt(10, function(err, salt) {
+    users.find({ username: req.body.loginName }, function(err, data) {
         if(err) throw err
-        bcrypt.hash(req.body.loginPass, salt, function(err, hash) {
-            if(err) throw err
-            users.findOne({ username: req.body.loginName }, function(err, data) {
+        
+        if(data.length > 0) {
+            bcrypt.compare(req.body.loginPass, data[0].passHash, function(err, flag) {
                 if(err) throw err
-                if(data != null) {
-                    console.log("entre al login")
+                
+                if(flag) {
                     req.session.userName = req.body.loginName
                     res.status(200).send({ connected: true })
                 } else {
-                    res.status(403).send({ connected: false })
+                    res.status(200).send({ connected: false })
                 }
             })
-        })
+        } else {
+            res.status(200).send({ connected: false })
+        }
     })
 }
 
