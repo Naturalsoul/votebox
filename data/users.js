@@ -23,7 +23,7 @@ exports.signup = function(req, res) {
         users.find({ username: newUser.username }, function(err, data) {
             if(err) throw err
             if(data.length > 0) {
-                res.status(200).send({created: false})
+                res.status(200).send({ created: false })
             }
             else {
                 newUser.save(function(err) {
@@ -32,6 +32,7 @@ exports.signup = function(req, res) {
                     console.log("Usuario " + newUser.username + " created.")
                 })
                 
+                req.session.userName = req.body.signupName
                 res.status(200).send({ created: true })
             }
         })
